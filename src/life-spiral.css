@@ -1,0 +1,99 @@
+/* ---------- dose-driven psychedelia ---------- */
+
+.ls-root {
+  --ls-hue-speed: 0s;
+}
+
+.ls-tube,
+.ls-ghost {
+  transform-origin: 50% 50%;
+}
+
+.ls-aura {
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  background:
+    radial-gradient(circle at 50% 50%, transparent 0 18%, var(--background) 70%),
+    conic-gradient(from 0deg, #ff3cac, #784ba0, #2b86c5, #00f5a0, #f9f871, #ff9a3c, #ff3cac);
+  filter: blur(40px);
+  border-radius: 9999px;
+}
+
+.ls-ghost {
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  pointer-events: none;
+}
+
+/* micro */
+[data-dose="1"] .ls-tube { animation: ls-hue 40s linear infinite; }
+[data-dose="1"] .ls-stage { animation: ls-breathe 9s ease-in-out infinite; }
+[data-dose="1"] .ls-aura { opacity: 0.12; }
+
+/* trip */
+[data-dose="2"] .ls-tube { animation: ls-hue 12s linear infinite; }
+[data-dose="2"] .ls-stage { animation: ls-breathe 5s ease-in-out infinite; }
+[data-dose="2"] .ls-aura { opacity: 0.28; animation: ls-spin 30s linear infinite; }
+[data-dose="2"] .ls-ghost { opacity: 0.22; animation: ls-kaleido 40s linear infinite; }
+[data-dose="2"] .ls-comet { display: inline; }
+
+/* heroic */
+[data-dose="3"] .ls-tube { animation: ls-hue-hard 4s linear infinite; }
+[data-dose="3"] .ls-stage { animation: ls-breathe 3s ease-in-out infinite; }
+[data-dose="3"] .ls-spin { animation: ls-spin 120s linear infinite; }
+[data-dose="3"] .ls-aura { opacity: 0.5; animation: ls-spin 8s linear infinite reverse; }
+[data-dose="3"] .ls-ghost { opacity: 0.4; animation: ls-kaleido 14s linear infinite; }
+[data-dose="3"] .ls-comet { display: inline; }
+[data-dose="3"] .ls-mark { animation: ls-twinkle 1.6s ease-in-out infinite; }
+[data-dose="3"] .ls-mark:nth-child(3n) { animation-delay: -0.5s; }
+[data-dose="3"] .ls-mark:nth-child(3n + 1) { animation-delay: -1.1s; }
+
+.ls-comet { display: none; }
+
+@keyframes ls-hue {
+  from { filter: hue-rotate(0deg); }
+  to { filter: hue-rotate(360deg); }
+}
+@keyframes ls-hue-hard {
+  from { filter: hue-rotate(0deg) saturate(1.8); }
+  to { filter: hue-rotate(360deg) saturate(1.8); }
+}
+@keyframes ls-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.025); }
+}
+@keyframes ls-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes ls-kaleido {
+  from { transform: scale(1.18, -1.18) rotate(0deg); filter: blur(6px) hue-rotate(0deg); }
+  to { transform: scale(1.18, -1.18) rotate(-360deg); filter: blur(6px) hue-rotate(-360deg); }
+}
+@keyframes ls-twinkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+@keyframes ls-pulse {
+  0% { r: 8; opacity: 0.9; }
+  100% { r: 46; opacity: 0; }
+}
+
+.ls-pulse { animation: ls-pulse 2.2s ease-out infinite; }
+
+/* event marks */
+.ls-mark {
+  cursor: pointer;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.15s ease;
+}
+.ls-mark:hover,
+.ls-mark[data-selected] {
+  transform: scale(1.9);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ls-root *,
+  .ls-root { animation: none !important; }
+  .ls-comet { display: none !important; }
+}

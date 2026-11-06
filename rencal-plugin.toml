@@ -1,0 +1,10 @@
+id = "larskarbo.life-spiral"
+name = "Life Spiral"
+description = "Years of your life as one psychedelic sausage coiling around itself, a day per segment"
+min_rencal_version = "0.9.1"
+
+[[contributes.views]]
+id = "life-spiral"
+name = "Life Spiral"
+script = "dist/life-spiral.js"
+css = "dist/life-spiral.css"

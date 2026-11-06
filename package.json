@@ -1,0 +1,14 @@
+{
+  "name": "rencal-view-life-spiral",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "rencal-sdk build",
+    "dev": "rencal-sdk dev"
+  },
+  "devDependencies": {
+    "@rencomputer/rencal-sdk": "0.3.0",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0"
+  }
+}
